@@ -4,6 +4,25 @@ import requests
 from selenium import webdriver
 
 
+class download_pic:
+    """
+    :param url:图片的链接
+    """
+    def __init__(self, url: str):
+        self.url = url
+
+    def download(self, name=None):
+        image_resp = requests.get(self.url)
+        if name is None:
+            name = self.url.split("/")[-1]
+        else:
+            name += '.jpg'
+        with open('img/'+name, mode='wb') as f:
+            f.write(image_resp.content)
+        print(f"{name},over!")
+        time.sleep(0.2)
+
+
 class my_crawler:
     """传入url，必要情况下传入新的param，输出经etree处理后的html"""
 
