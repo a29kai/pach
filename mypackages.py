@@ -11,8 +11,8 @@ class download_pic:
     def __init__(self, url: str):
         self.url = url
 
-    def download(self, name=None):
-        image_resp = requests.get(self.url)
+    def download(self, name=None, headers=None):
+        image_resp = requests.get(self.url, headers=headers)
         if name is None:
             name = self.url.split("/")[-1]
         else:
